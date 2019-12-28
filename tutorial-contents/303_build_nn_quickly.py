@@ -25,9 +25,9 @@ net1 = Net(1, 10, 1)
 
 # easy and fast way to build your network
 net2 = torch.nn.Sequential(
-    torch.nn.Linear(1, 10),
-    torch.nn.ReLU(),
-    torch.nn.Linear(10, 1)
+    torch.nn.Linear(1, 10), #输入一个，输出10个
+    torch.nn.ReLU(), #激励函数
+    torch.nn.Linear(10, 1)#输入10个，输出1个
 )
 
 
