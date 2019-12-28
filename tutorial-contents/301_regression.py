@@ -24,20 +24,21 @@ y = x.pow(2) + 0.2*torch.rand(x.size())                 # noisy y data (tensor),
 
 
 class Net(torch.nn.Module):
-    def __init__(self, n_feature, n_hidden, n_output):
+    def __init__(self, n_feature, n_hidden, n_output): #初始化网络
         super(Net, self).__init__()
         self.hidden = torch.nn.Linear(n_feature, n_hidden)   # hidden layer
-        self.predict = torch.nn.Linear(n_hidden, n_output)   # output layer
+        self.predict = torch.nn.Linear(n_hidden, n_output)   # output layer  接受从隐藏层传来的点
 
-    def forward(self, x):
+    def forward(self, x): #前向传递的过程
         x = F.relu(self.hidden(x))      # activation function for hidden layer
         x = self.predict(x)             # linear output
         return x
 
-net = Net(n_feature=1, n_hidden=10, n_output=1)     # define the network
+net = Net(n_feature=1, n_hidden=10, n_output=1)     # define the network，
 print(net)  # net architecture
 
-optimizer = torch.optim.SGD(net.parameters(), lr=0.2)
+#优化
+optimizer = torch.optim.SGD(net.parameters(), lr=0.2) #lr为学习效率
 loss_func = torch.nn.MSELoss()  # this is for regression mean squared loss
 
 plt.ion()   # something about plotting
